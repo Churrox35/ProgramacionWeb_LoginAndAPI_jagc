@@ -1,6 +1,6 @@
 # Login que autentica usuario con una API de terceros
 
-El ejercicio se realizon con [Angular CLI](https://github.com/angular/angular-cli) version 18.2.11.
+El ejercicio se realizo con [Angular CLI](https://github.com/angular/angular-cli) version 18.2.11.
 
 ## Creación del servicio para consumir una api
 
@@ -16,16 +16,25 @@ Se crea para utilizar en Angular la representación de la estructura de los dato
 ![image](https://github.com/user-attachments/assets/b73af0df-ca9d-4df2-874c-e0cdfe2de2bc)
 
 ## Creación del Login
+Se crea un nuevo componente nombra login donde se busca acomodar tanto la lógica y el estilo, esto se logra con el comando `ng generate component login`. Dentro de ese componente, en el archivo .html permite que los usuarios ingresen sus credenciales (correo electrónico y contraseña) y se autentiquen. Los datos ingresados se envían al componente Angular mediante el evento ngSubmit, donde se validan contra un servicio, al hacer clic, activa el evento (ngSubmit) que llama al método onSubmit() del componente para procesar las credenciales. Este proceso se realza en `login.component.ts`
+
+![image](https://github.com/user-attachments/assets/f2489b10-314e-4a9d-8b02-c2aa798c959e)
+
 
 En nuestro componente `login.component.ts` se inicia importantondo el angular core para establecer que se trata de un componente.
 Ahora lo siguiente más importante es importar `router` ya que esta permite navegar a otras páginas de la aplicación, ya que al autenticar correctamente al usuario nos dirigiremos aun componente llamado dashboard 
 Dentro del método que nos crea nuestro componente `export class LoginComponent` email y password guardan los valores ingresados por el usuario y error el ensaje de error que se muestra si las credenciales son incorrectas o hay problemas de conexión.
+
 En el constructor `userService` se usa para obtener los datos de los usuarios y `router` se usa para redirigir al usuario después de un inicio de sesión exitoso.
 En el método onSubmit: 
+
 ● Llama al servicio userService para obtener la lista de usuarios (simula una base de datos).
+
 ● Busca en la lista un usuario que coincida con el email y la contraseña ingresados.
+
 ● Si encuentra un usuario:
 Navega a /dashboard.
+
 ● Si no lo encuentra:
 Muestra un mensaje de error.
 
@@ -42,15 +51,22 @@ Resultado:
 Principalmente se crearon las rutas para definir la navegación en la aplicación Angular, las rutas permiten que como usuario accedamos a diferentes páginas o vistas, vinculando URLs específicas con componentes.
 
 Nuestro archivo `app.routes.ts` se compone por:
+
+
 ● path: La URL asociada a la ruta.
+
 ● component: El componente que se carga al acceder a esa ruta.
+
 ● redirectTo: Redirige automáticamente a otra ruta.
+
 ● pathMatch: Especifica cómo debe coincidir el path.
 
 El método `export const routes: Routes` cuando el usuario accede a la URL base (''), es redirigido automáticamente a /login gracias a `redirectTo'/login'` La ruta /login carga el LoginComponent, mientras que /dashboard carga el DashboardComponent, que a su vez tiene rutas hijas definidas: /dashboard/profile muestra el ProfileComponent y /dashboard/users muestra el UsersComponent.
 
 
 ## PRUEBA
+
+Finalmente se ejecuta el proyecto con el siguiente comando: `ng serve -o `para abrir en automatico:
 
 Para comprobar que el ejercicio funciono correctamente primero visualizaremos la pagina de la API para saber que ususarios deben poder iniciar sesión:
 
